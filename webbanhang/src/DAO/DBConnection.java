@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 public class DBConnection {
 
@@ -35,13 +36,13 @@ public class DBConnection {
 
 	public void excuteSql(String sql) throws SQLException {
 		Connection conn = getConnect();
-		PreparedStatement stm = conn.prepareStatement(sql);
+		Statement stm = conn.createStatement();
 		stm.executeUpdate(sql);
 	}
 
 	public ResultSet selectData(String sql) throws SQLException {
 		Connection conn = getConnect();
-		PreparedStatement stm = (PreparedStatement) conn.createStatement();
+		Statement stm = conn.createStatement();
 		ResultSet rs = stm.executeQuery(sql);
 		return rs;
 
